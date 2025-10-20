@@ -1,46 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js AWS Cognito Authentication Template
 
-## Getting Started
+A production-ready **starter template** for building secure, scalable web applications with AWS-managed authentication. Built with **Next.js 15**, **NextAuth.js v5**, **AWS Cognito**, and **DynamoDB**, this template demonstrates complete OAuth 2.0/OIDC authentication, user session management, protected routes with middleware, DynamoDB integration for data persistence, and includes a task management demo application. Perfect for developers who want to quickly bootstrap a Next.js application with enterprise-grade AWS authentication and data storage.
 
-First, run the development server:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+ installed
+- AWS Account with configured Cognito User Pool and DynamoDB table
+- npm, yarn, pnpm, or bun package manager
+
+### 1. Install Dependencies
 
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
+yarn install
 # or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy the [.env.template](https://github.com/willymateo/nextjs-aws-cognito-auth-template/blob/main/.env.template) file to `.env.local` and fill it with your AWS credentials and configuration values.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run Development Server
 
-## Learn More
+```bash
+npm run start:dev
+# or
+yarn start:dev
+# or
+pnpm start:dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏭 Production Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Build for Production
 
-## Deploy on Vercel
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This creates an optimized production build using Turbopack.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Start Production Server
 
-## AWS services used
+```bash
+npm start
+# or
+yarn start
+# or
+pnpm start
+```
 
-- cognito user pool
-- cognito app cient
-- congito managed login
-- congito domain
-- cognito identity pool
-- dynamodb
-- iam role
+## ☁️ AWS Services Configuration
+
+### Required AWS Services
+
+1. **Cognito User Pool**
+   - Manages user registration, authentication, and account recovery
+   - Configure OAuth 2.0 flows and hosted UI
+
+2. **Cognito App Client**
+   - Application credentials for NextAuth.js integration
+   - Enable OAuth 2.0 flows (Authorization code grant)
+
+3. **Cognito Hosted UI** (Optional)
+   - Managed login/signup pages
+   - Custom domain support
+
+4. **Cognito Domain**
+   - Required for OAuth 2.0 callbacks
+   - Can use Amazon domain or custom domain
+
+5. **Cognito Identity Pool**
+   - Provides temporary AWS credentials for authenticated users
+   - Enables direct access to DynamoDB from the application
+
+6. **DynamoDB Table**
+   - NoSQL database for application data (tasks in this template)
+   - Partition key: `userId`, Sort key: `id`
+
+7. **IAM Roles**
+   - Authenticated role: Grants DynamoDB access to signed-in users
+   - Unauthenticated role: Limited or no access
