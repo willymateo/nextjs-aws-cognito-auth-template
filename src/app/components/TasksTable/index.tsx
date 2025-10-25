@@ -14,7 +14,7 @@ import { TaskItem } from "./TaskItem";
 import { TaskTableFilter } from "./domain";
 
 const TasksTable = () => {
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession({ required: false });
   const [tasks, setTasks] = useState<Task[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [filter, setFilter] = useState<TaskTableFilter>(TaskTableFilter.All);

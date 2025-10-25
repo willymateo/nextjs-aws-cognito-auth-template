@@ -7,6 +7,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientId: process.env.AWS_COGNITO_APP_CLIENT_ID,
       clientSecret: process.env.AWS_COGNITO_APP_CLIENT_SECRET,
       issuer: process.env.AWS_COGNITO_ISSUER,
+      authorization: {
+        params: {
+          prompt: "login",
+        },
+      },
     }),
   ],
   callbacks: {

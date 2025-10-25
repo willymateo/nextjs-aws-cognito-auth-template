@@ -5,7 +5,7 @@ import { TasksTable } from "@/app/components/TasksTable";
 import { Header } from "@/app/components/Header";
 
 const Home = () => {
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession({ required: false });
 
   return (
     <div className="min-h-screen flex flex-col">

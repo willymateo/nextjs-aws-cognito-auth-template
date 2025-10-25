@@ -3,7 +3,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Header = () => {
-  const { data: session, status } = useSession({ required: true });
+  const { data: session, status } = useSession({ required: false });
 
   const handleSignIn = () => signIn("cognito");
   const handleSignOut = () => signOut();
